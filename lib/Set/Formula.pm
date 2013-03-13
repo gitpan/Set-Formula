@@ -9,18 +9,18 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(formula_checker formula_calcul equality_checker);
 
 use Carp qw(cluck);
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 my $debug = 0;
 
 my %operators = (
-                  '+'   => \&union
-                 ,'-'   => \&complement
-                 ,'^'   => \&intersection
+                  '+'   => \&_union
+                 ,'-'   => \&_complement
+                 ,'^'   => \&_intersection
                 );
 
 my $counter = 0;
 #------------------------------------------#
-sub union
+sub _union
 {
    my ($hrefA, $hrefB, $href_result) = @_;
    %{$href_result} = ();  # reset this hash
@@ -29,7 +29,7 @@ sub union
    for  (keys %{$hrefB}) { ${$href_result}{$_} = 0 }
 }
 #------------------------------------------#
-sub complement
+sub _complement
 {  # Result := A - B
    my ($hrefA, $hrefB, $href_result) = @_;
    %{$href_result} = ();  # reset this hash
@@ -38,7 +38,7 @@ sub complement
    {  unless (exists ${$hrefB}{$_}) { ${$href_result}{$_} = 0 } }
 }
 #------------------------------------------#
-sub intersection
+sub _intersection
 {
    my ($hrefA, $hrefB, $href_result) = @_;
    %{$href_result} = ();  # reset this hash
@@ -84,10 +84,6 @@ sub formula_checker   # returns true on success and undefined value on error
    # rule 1: 2 operands  can't be adjacent
    # rule 2: 2 operators can't be adjacent
    # rule 3: operator can be neither first not last formula element
-   # How to do: replace every operand with number +1, every operator with number -1
-   #            and calculate sequence of sums from left to right.
-   #            It must be 1,0,1,0,...,1,  i.e. consists of ones end zeroes only,
-   #            begin and finish with 1.
 
    $debug && print "DEBUG 10: formula:  $formula\n";
    $remainder = $formula;
@@ -297,7 +293,7 @@ __END__
 
 =head1 VERSION
 
- Version 0.01
+ Version 0.02
 
 =head1 SYNOPSIS
 
@@ -313,9 +309,17 @@ __END__
 
 =head1 DESCRIPTION
 
- formula_checker  - checks syntax of formula without its calculation.
- formula_calcul   - calculates formula without its syntax check.
- equality_checker - checks, if 2 sets are equal.
+=head2 C<formula_checker>
+
+ checks syntax of formula without its calculation.
+
+=head2 C<formula_calcul>
+
+ calculates formula without its syntax check.
+
+=head2 C<equality_checker>
+
+ checks, if 2 sets are equal.
 
  Formula should be written in common arithmetic notation (infix notation)
  and can contain unrestricted amount of nested parentheses ().
