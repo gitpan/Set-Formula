@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name:               Set-Formula
-version:            0.02
-abstract:           ~
+version:            0.03
+abstract:           Formula calculation for sets
 author:
     - Mart Rivilis <mrivilis@gmail.com>
 license:            Artistic_2_0

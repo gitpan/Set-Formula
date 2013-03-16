@@ -9,7 +9,7 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(formula_checker formula_calcul equality_checker);
 
 use Carp qw(cluck);
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 my $debug = 0;
 
 my %operators = (
@@ -242,7 +242,7 @@ sub formula_calcul
       {
          $debug && cluck "ERROR: Unknown right operand \"$href_operand_right\" in formula \"$curr_formula\"\n";
          return;
-      } 
+      }
 
       if ($debug)
       {
@@ -289,11 +289,7 @@ __END__
 
 =head1 NAME
 
- Set::Formula - Formula calculation for sets
-
-=head1 VERSION
-
- Version 0.02
+Set::Formula - Formula calculation for sets
 
 =head1 SYNOPSIS
 
@@ -321,44 +317,45 @@ __END__
 
  checks, if 2 sets are equal.
 
- Formula should be written in common arithmetic notation (infix notation)
- and can contain unrestricted amount of nested parentheses ().
+Formula should be written in common arithmetic notation (infix notation)
+and can contain unrestricted amount of nested parentheses ().
 
- Supported set operators are
+Supported set operators are
+
    "+"    - union,
    "-"    - complement,
    "^"    - intersection.
 
- All these operators are binary operators, i.e. they require 2 operands.
+All these operators are binary operators, i.e. they require 2 operands.
 
- Formula without parentheses is evaluated from left to right
- with equal priority for all operators.
- Parentheses increase priority of partial formula expressions.
+Formula without parentheses is evaluated from left to right
+with equal priority for all operators.
+Parentheses increase priority of partial formula expressions.
 
- White characters including new line in formula are accepted and ignored.
- Thus formula might be placed into both a single line and multiple lines.
+White characters including new line in formula are accepted and ignored.
+Thus formula might be placed into both a single line and multiple lines.
 
- formula_checker and formula_calcul return nonzero on success,
- the undefined value otherwise.
+formula_checker and formula_calcul return nonzero on success,
+the undefined value otherwise.
 
- equality_checker returns 1 if both sets are equal, else 0.
+equality_checker returns 1 if both sets are equal, else 0.
 
 =head2 TECHNICAL IMPLEMENTATION OF SETS
 
- For formula_checker and formula_calcul
- --------------------------------------
- All formula operands must be highest level keys of a hash of hashes,
- that is named in example below as %HoH_sets.
- Lowest level keys of this hash of hashes form corresponding sets.
- Values of lowest level hashes are irrelevant (can be undefined).
+For formula_checker and formula_calcul
+--------------------------------------
+All formula operands must be highest level keys of a hash of hashes,
+that is named in example below as %HoH_sets.
+Lowest level keys of this hash of hashes form corresponding sets.
+Values of lowest level hashes are irrelevant (can be undefined).
 
- Name convention for formula operands: begin with a character, optionally
- following by any amount of characters, digits, underlines.
- Operand names are case sensitive.
+Name convention for formula operands: begin with a character, optionally
+following by any amount of characters, digits, underlines.
+Operand names are case sensitive.
 
- For equality_checker
- --------------------
- Operands are sets, written in keys of one dimensional hashes.
+For equality_checker
+--------------------
+Operands are sets, written in keys of one dimensional hashes.
 
 =head2 EXAMPLES
 
@@ -371,7 +368,8 @@ __END__
  @E{qw (bisque  honeydew             )} = (); 
  %HoH_sets = ( A=>\%A, B=>\%B, C=>\%C, D=>\%D, E=>\%E );
 
- # or alternatively
+or alternatively
+
  %HoH_sets = ( 
     A => { bisque  => 0,  red      => 0,  blue  => 0,  yellow => 0, },
     B => { bisque  => 0,  brown    => 0,  white => 0,  yellow => 0, },
@@ -379,14 +377,16 @@ __END__
     D => { grey    => 0,  pink     => 0,  rose  => 0,               },
     E => { bisque  => 0,  honeydew => 0,                            }
  );
- #  A, B, C, D, F are operands. Every of them is a set, written in keys of sublevel hash.
+
+A, B, C, D, F are operands. Every of them is a set, written in keys of sublevel hash.
 
  $formula  = "A ^ ( B + (C ^ D) ) - E";
  %result = ();  # this hash must be declared, but it must not be emptied before
                 # call of formula_calcul()
 
- # Usage of formula_checker() before formula_calcul() is recommended,
- # but is not mandatory
+Usage of formula_checker() before formula_calcul() is recommended,
+but is not mandatory
+
  formula_checker ($formula)                       || die "Error in formula\n";
  formula_calcul  ($formula, \%result, \%HoH_sets) || die "Error in formula\n";
 
@@ -398,33 +398,34 @@ __END__
 
 =head2 EXPORT
 
- formula_checker,
- formula_calcul,
- equality_checker.
+formula_checker,
+formula_calcul,
+equality_checker.
 
 =head1 SEE ALSO
 
- Part "Basic operations" - http://en.wikipedia.org/wiki/Set_(mathematics)
- Infix notation          - http://en.wikipedia.org/wiki/Infix_notation
+Part "Basic operations" - http://en.wikipedia.org/wiki/Set_(mathematics)
+Infix notation          - http://en.wikipedia.org/wiki/Infix_notation
 
 =head1 AUTHOR
 
- Mart Rivilis, E<lt>rivilism@cpan.comE<gt>
+Mart Rivilis, rivilism@cpan.com
 
 =head1 BUGS
 
- Please report any bugs or feature requests to C<bug-set-formula at rt.cpan.org>,
- or through the web interface at
- L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-Formula>.
- I will be notified, and then you'll automatically be notified
- of progress on your bug as I make changes.
+Please report any bugs or feature requests to C<bug-set-formula at rt.cpan.org>,
+or through the web interface at
+http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-Formula.
+I will be notified, and then you'll automatically be notified
+of progress on your bug as I make changes.
 
 =head1 SUPPORT
 
- You can find documentation for this module with the perldoc command.
+You can find documentation for this module with the perldoc command.
+
     perldoc Set::Formula
 
- You can also look for information at:
+You can also look for information at:
 
 =over 4
 
@@ -444,10 +445,10 @@ __END__
 
 =head1 COPYRIGHT AND LICENSE
 
- Copyright (C) 2013 by Mart Rivilis
+Copyright (C) 2013 by Mart Rivilis
 
- This library is free software; you can redistribute it and/or modify
- it under the same terms as Perl itself, either Perl version 5.8.8 or,
- at your option, any later version of Perl 5 you may have available.
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.8 or,
+at your option, any later version of Perl 5 you may have available.
 
 =cut
