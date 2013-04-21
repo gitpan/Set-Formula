@@ -9,7 +9,7 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(formula_checker formula_calcul equality_checker);
 
 use Carp qw(cluck);
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 my $debug = 0;
 
 my %operators = (
@@ -328,22 +328,24 @@ Supported set operators are
 
 All these operators are binary operators, i.e. they require 2 operands.
 
-Formula without parentheses is evaluated from left to right
+Formulas without parentheses are evaluated from left to right
 with equal priority for all operators.
 Parentheses increase priority of partial formula expressions.
 
 White characters including new line in formula are accepted and ignored.
 Thus formula might be placed into both a single line and multiple lines.
 
-formula_checker and formula_calcul return nonzero on success,
+=head2 C<Return values>
+
+formula_checker ind formula_calcul return nonzero on success,
 the undefined value otherwise.
 
 equality_checker returns 1 if both sets are equal, else 0.
 
 =head2 TECHNICAL IMPLEMENTATION OF SETS
 
-For formula_checker and formula_calcul
---------------------------------------
+ For formula_checker and formula_calcul
+ --------------------------------------
 All formula operands must be highest level keys of a hash of hashes,
 that is named in example below as %HoH_sets.
 Lowest level keys of this hash of hashes form corresponding sets.
@@ -353,8 +355,8 @@ Name convention for formula operands: begin with a character, optionally
 following by any amount of characters, digits, underlines.
 Operand names are case sensitive.
 
-For equality_checker
---------------------
+ For equality_checker
+ --------------------
 Operands are sets, written in keys of one dimensional hashes.
 
 =head2 EXAMPLES
@@ -398,14 +400,14 @@ but is not mandatory
 
 =head2 EXPORT
 
-formula_checker,
-formula_calcul,
-equality_checker.
+ formula_checker,
+ formula_calcul,
+ equality_checker.
 
 =head1 SEE ALSO
 
-Part "Basic operations" - http://en.wikipedia.org/wiki/Set_(mathematics)
-Infix notation          - http://en.wikipedia.org/wiki/Infix_notation
+ Part "Basic operations" - http://en.wikipedia.org/wiki/Set_(mathematics)
+ Infix notation          - http://en.wikipedia.org/wiki/Infix_notation
 
 =head1 AUTHOR
 

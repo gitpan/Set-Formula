@@ -35,6 +35,7 @@ DESCRIPTION
    White characters including new line in formula are accepted and ignored.
    Thus formula might be placed into both a single line and multiple lines.
 
+   Return Values
    formula_checker and formula_calcul return nonzero on success,
    the undefined value otherwise.
 

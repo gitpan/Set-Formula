@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Set-Formula
-version:            0.03
+version:            0.04
 abstract:           Formula calculation for sets
 author:
     - Mart Rivilis <mrivilis@gmail.com>
