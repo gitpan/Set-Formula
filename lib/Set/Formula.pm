@@ -9,7 +9,7 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(formula_checker formula_calcul equality_checker);
 
 use Carp qw(cluck);
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 my $debug = 0;
 
 my %operators = (
@@ -322,9 +322,9 @@ and can contain unrestricted amount of nested parentheses ().
 
 Supported set operators are
 
-   "+"    - union,
-   "-"    - complement,
-   "^"    - intersection.
+    +     - union 
+    -     - complement 
+    ^     - intersection 
 
 All these operators are binary operators, i.e. they require 2 operands.
 
@@ -406,18 +406,17 @@ but is not mandatory
 
 =head1 SEE ALSO
 
- Part "Basic operations" - http://en.wikipedia.org/wiki/Set_(mathematics)
- Infix notation          - http://en.wikipedia.org/wiki/Infix_notation
+ Part "Basic operations" - L<http://en.wikipedia.org/wiki/Set_(mathematics)>
+ Infix notation          - L<http://en.wikipedia.org/wiki/Infix_notation>
 
 =head1 AUTHOR
 
-Mart Rivilis, rivilism@cpan.com
+Mart E. Rivilis, rivilism@cpan.org
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-set-formula at rt.cpan.org>,
-or through the web interface at
-http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-Formula.
+Please report any bugs or feature requests via mail to L<bug-set-formula@rt.cpan.org>
+or at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-Formula>.
 I will be notified, and then you'll automatically be notified
 of progress on your bug as I make changes.
 

@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME             => 'Set::Formula',
-    AUTHOR           => q{Mart Rivilis <mrivilis@gmail.com>},
+    AUTHOR           => q{Mart E. Rivilis <rivilism@cpan.org>},
     VERSION_FROM     => 'lib/Set/Formula.pm',
     ABSTRACT_FROM    => 'lib/Set/Formula.pm',
     LICENSE          => 'Artistic_2_0',
